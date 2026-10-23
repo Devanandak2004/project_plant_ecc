@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>ECC PCBA Plant – 3D Digital Twin</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="style.css"></head>
+<body>
+<aside id="side"><h1>ECC PCBA Plant</h1><div id="nav"></div></aside>
+<div id="stage"><canvas id="c"></canvas>
+<div id="bar">
+ <button data-v="iso">Isometric</button><button data-v="top">Top</button><button data-v="front">Front</button>
+ <button id="reset">Reset</button><button id="full">Full screen</button><button id="meas">Measure</button><button id="editBtn">Edit layout</button><button id="follow">Follow AMR</button><button id="tourBtn">Process tour</button><label><input type="checkbox" id="tKeep" checked>Build-up</label><label><input type="checkbox" id="rot">Auto-rotate</label><span class="sep"></span>
+ <label><input type="checkbox" data-l="labels" checked>Labels</label>
+ <label><input type="checkbox" data-l="aisles" checked>Aisles</label>
+ <label><input type="checkbox" data-l="paths" checked>Pathways</label>
+ <label><input type="checkbox" data-l="machines" checked>Machines</label>
+ <label><input type="checkbox" data-l="racks" checked>Racks</label>
+ <label><input type="checkbox" data-l="flow" checked>Material flow</label>
+</div>
+<div id="editPanel" hidden><b>Edit layout</b>
+<div class="g"><button id="eUndo">↶ Undo</button><button id="eSave">💾 Save</button><button id="eReset" title="Discard saved layout">Reset</button></div>
+<div id="eStat">Saved layout reloads automatically</div><hr>
+<select id="eType"></select>
+<div class="g"><input id="eW" type="number" step=".1" title="Length (m)"><input id="eD" type="number" step=".1" title="Width (m)"><input id="eH" type="number" step=".1" title="Height (m)"></div>
+<button id="eAdd">+ Add object (at view centre)</button><hr>
+<input id="sText" value="MI AREA"><div class="g"><input id="sColor" type="color" value="#1565c0"><select id="sShape"><option value="board">Sign board</option><option value="floor">Floor sign</option></select><input id="sW" type="number" step=".5" value="8" title="Sign width (m)"></div>
+<button id="sAdd">+ Add sign</button><button id="sUpd">Update selected sign / area board</button><hr>
+<div id="eSel">Nothing selected</div>
+<div class="g"><select id="unit"><option>mm</option><option>in</option><option>m</option></select><select id="snap"><option value=".5">Snap 0.5 m</option><option value=".1">Snap 0.1 m</option><option value=".01">Snap 1 cm</option><option value="0">Free</option></select></div>
+<div class="g xf"><label>X<input id="tX" type="number" step="50"></label><label>Y (up)<input id="tY" type="number" step="50"></label><label>Z<input id="tZ" type="number" step="50"></label><label>Rot°<input id="tR" type="number" step="15"></label></div>
+<div class="g"><button id="eRot">Rotate (R)</button><button id="eDup">Duplicate</button><button id="eDel">Delete</button></div>
+<small>Drag to move. Shift+click selects area boards. X/Z measured from plant top-left corner; Y is height. Ctrl+Z = undo.</small></div>
+<div id="info">Click an area or object</div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="plant.js"></script>
+</body></html>
